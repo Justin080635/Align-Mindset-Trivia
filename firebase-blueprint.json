@@ -1,0 +1,69 @@
+{
+  "entities": {
+    "users": {
+      "title": "Users",
+      "description": "User account and game progress document identified by Firebase Auth UID",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "username": { "type": "string" },
+        "handle": { "type": "string" },
+        "avatarUrl": { "type": "string" },
+        "bannerGradient": { "type": "string" },
+        "bio": { "type": "string" },
+        "mindsetMantra": { "type": "string" },
+        "leagueTier": { "type": "string" },
+        "rankPoints": { "type": "number" },
+        "globalRank": { "type": "number" },
+        "totalGames": { "type": "number" },
+        "accuracyRate": { "type": "number" },
+        "highestStreak": { "type": "number" },
+        "currentStreakDays": { "type": "number" },
+        "showcaseBadgeIds": { "type": "array", "items": { "type": "string" } },
+        "unlockedBadgeIds": { "type": "array", "items": { "type": "string" } },
+        "soundEnabled": { "type": "boolean" },
+        "voiceEnabled": { "type": "boolean" },
+        "narrationSpeed": { "type": "number" },
+        "theme": { "type": "string" },
+        "googleConnected": { "type": "boolean" },
+        "googleEmail": { "type": "string" },
+        "googleName": { "type": "string" },
+        "googlePhotoUrl": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "username", "rankPoints"]
+    },
+    "matchHistory": {
+      "title": "Match History",
+      "description": "History of trivia matches played by user",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "timestamp": { "type": "string" },
+        "category": { "type": "string" },
+        "score": { "type": "number" },
+        "correctAnswers": { "type": "number" },
+        "totalQuestions": { "type": "number" },
+        "accuracy": { "type": "number" },
+        "personality": { "type": "string" },
+        "mode": { "type": "string" },
+        "xpEarned": { "type": "number" },
+        "leaguePointsDelta": { "type": "number" }
+      },
+      "required": ["id", "userId", "score", "timestamp"]
+    }
+  },
+  "rules": [
+    {
+      "collection": "users",
+      "allow": "read, write",
+      "condition": "request.auth != null && (request.auth.uid == resource.id || request.auth.uid == request.resource.id)"
+    },
+    {
+      "collection": "matchHistory",
+      "allow": "read, write",
+      "condition": "request.auth != null && (request.auth.uid == resource.data.userId || request.auth.uid == request.resource.data.userId)"
+    }
+  ]
+}

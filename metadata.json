@@ -1,0 +1,6 @@
+{
+  "name": "Align Mindset Trivia",
+  "description": "AI-hosted gamified trivia platform for the Align Mindset Initiative featuring 1v1 head-to-head duels, squad party rooms with custom invite codes, gameshow contestant authentication, customizable AI host personalities with voice banter, vector badges, search-grounded questions, competitive leaderboards, and community social hub.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
